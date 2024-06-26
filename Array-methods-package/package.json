@@ -1,0 +1,22 @@
+{
+  "name": "array-methods-package",
+  "version": "1.0.1",
+  "description": "A utility package that adds new higher-order functions (HOFs) to arrays, allowing you to directly calculate the sum of an array and remove duplicate numbers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sum",
+    "array",
+    "function",
+    "higher-order",
+    "HOF",
+    "utility",
+    "remove-duplicates",
+    "unique",
+    "array-operations"
+  ],
+  "author": "Anupam Yadav",
+  "license": "ISC"
+}
