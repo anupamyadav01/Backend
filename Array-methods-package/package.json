@@ -1,6 +1,6 @@
 {
   "name": "array-methods-package",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A utility package that adds new higher-order functions (HOFs) to arrays, allowing you to directly calculate the sum of an array and remove duplicate numbers.",
   "main": "index.js",
   "scripts": {
