@@ -1,0 +1,24 @@
+{
+  "name": "binary-search-app-package",
+  "version": "1.0.0",
+  "description": "A simple binary search implementation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anupamyadav01/npm-package-Binary-Search.git"
+  },
+  "keywords": [
+    "binary",
+    "search",
+    "algorithm"
+  ],
+  "author": "Anupam Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anupamyadav01/npm-package-Binary-Search/issues"
+  },
+  "homepage": "https://github.com/anupamyadav01/npm-package-Binary-Search#readme"
+}
