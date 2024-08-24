@@ -1,0 +1,23 @@
+{
+  "name": "javascript-hofs",
+  "version": "1.0.1",
+  "description": "This file basically represents JavaScript Higher Order Functions",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anupamyadav01/Backend.git"
+  },
+  "keywords": [
+    "hofs",
+    "sum of array",
+    "remove duplicates"
+  ],
+  "author": "Anupam Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anupamyadav01/Backend/issues"
+  },
+  "homepage": "https://github.com/anupamyadav01/Backend#readme"
+}
