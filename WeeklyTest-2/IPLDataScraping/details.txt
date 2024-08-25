@@ -1,0 +1,3 @@
+get player naem = div.st-ply-name
+get player team = div.st-ply-tm-name
+player run = td.np-tableruns
