@@ -1,8 +1,9 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+const { v4: uuidv4 } = require("uuid"); // Import UUID package
 
 const writeDataInFile = (fileName, data) => {
-  fs.writeFile(fileName, JSON.stringify(data), () => {
+  fs.writeFile(fileName, JSON.stringify(data, null, 2), () => {
     if (data) {
       console.log(`Data written to ${fileName} successfully.`);
     } else {
@@ -11,7 +12,7 @@ const writeDataInFile = (fileName, data) => {
   });
 };
 
-const getSingleSingleSeasonData = async (singlePageURL, page) => {
+const getSingleSingleSeasonData = async (singlePageURL, page, year) => {
   try {
     await page.goto(singlePageURL);
     const tableData = await page.evaluate(() => {
@@ -43,7 +44,15 @@ const getSingleSingleSeasonData = async (singlePageURL, page) => {
 
       return data;
     });
-    return tableData;
+
+    // Add year and unique ID to each object
+    const enrichedData = tableData.map((player) => ({
+      id: uuidv4(), // Generate unique ID
+      ...player,
+      year, // Add year key-value
+    }));
+
+    return enrichedData;
   } catch (error) {
     console.log("Failed to get IPL data", error);
   }
@@ -52,13 +61,19 @@ const getSingleSingleSeasonData = async (singlePageURL, page) => {
 const getDataByYear = () => {};
 
 const getIPLData = async (pageURL) => {
-  const browser = await puppeteer.launch({ headless: false });
+  // const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  const tabledata = await getSingleSingleSeasonData(pageURL, page);
+  const tabledata2024 = await getSingleSingleSeasonData(pageURL, page, 2024);
+  const tabledata2023 = await getSingleSingleSeasonData(pageURL, page, 2023);
+  // Add more years as needed
 
-  writeDataInFile("IPL2024.json", tabledata);
+  const allData = [...tabledata2024, ...tabledata2023]; // Merge all data
+
+  writeDataInFile("IPLData.json", allData);
   await browser.close();
 };
+
 const pageURL = "https://www.iplt20.com/stats/";
 getIPLData(pageURL);
