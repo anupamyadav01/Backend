@@ -1,0 +1,5 @@
+{
+  "search.useGlobalIgnoreFiles": true,
+  "github.gitAuthentication": true,
+  "github.experimental.multipleAccounts": true
+}
