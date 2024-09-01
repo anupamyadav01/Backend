@@ -1,4 +1,4 @@
-import express from "express";
-
-const app = express();
-const PORT = process.env.PORT || 3000;
+export const validatePassword = (req, res, next) => {
+  const password = req.body.password;
+  console.log(password);
+};
