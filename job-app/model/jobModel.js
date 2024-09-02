@@ -4,10 +4,11 @@ const jobSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    unique: true,
   },
   description: {
     type: String,
-    required: true,
+    default: "",
   },
   company: {
     type: String,
@@ -23,4 +24,5 @@ const jobSchema = new mongoose.Schema({
   },
 });
 
-export const JobSchema = mongoose.model("jobs", jobSchema);
+// creating collection of database
+export const JobModel = mongoose.model("jobs", jobSchema);

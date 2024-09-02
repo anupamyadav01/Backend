@@ -1,13 +1,15 @@
-import { JobSchema } from "../model/jobModel.js";
+import { JobModel } from "../model/jobModel.js";
 
 export const createJob = async (req, res) => {
   try {
     const jobs = req.body;
-    console.log(jobs);
-    const response = await JobSchema.create(req.body);
+    // console.log(jobs);
+    const newlyInstertedJob = await JobModel.create(req.body);
+    // console.log(newlyInstertedJob);
+
     res.json({
       sucess: true,
-      message: "Job API called",
+      message: "Job created Successfully",
     });
   } catch (error) {
     console.log(error);
@@ -18,10 +20,12 @@ export const createJob = async (req, res) => {
   }
 };
 
-export const listJob = (req, res) => {
+export const listJob = async (req, res) => {
+  const jobsData = await JobModel.find();
   res.json({
     success: true,
     message: "List of all jobs API called",
+    results: jobsData,
   });
 };
 
