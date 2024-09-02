@@ -1,4 +1,8 @@
 export const handleError = (error, req, res, next) => {
-  console.log("errrorhandler callled");
-  res.status(500).json({ error: error.message });
+  console.log("Error handler middleware called");
+
+  res.status(500).json({
+    status: "failed",
+    message: error.message,
+  });
 };
