@@ -1,4 +1,6 @@
+import { logger } from "../index.js";
+
 export const validatePassword = (req, res, next) => {
-  const password = req.body.password;
-  console.log(password);
+  logger.log("info", "Validating Password");
+  next();
 };

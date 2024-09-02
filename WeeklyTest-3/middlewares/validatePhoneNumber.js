@@ -1,4 +1,7 @@
+import { logger } from "../index.js";
+
 export const validatePhoneNumber = (req, res, next) => {
-  const { phoneNumber } = req.body;
-  console.log(phoneNumber);
+  logger.log("info", "Validating Phone Number");
+
+  next();
 };
