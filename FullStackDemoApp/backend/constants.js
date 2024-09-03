@@ -1,1 +1,1 @@
-export const DB_NAME = "fullstackapp";
+export const DATABASE_NAME = "fullstackapp";
