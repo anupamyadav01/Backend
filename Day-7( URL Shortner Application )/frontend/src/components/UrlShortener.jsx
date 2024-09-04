@@ -5,25 +5,31 @@ const UrlShortener = () => {
   const [url, setUrl] = useState("");
   const [showShortUrl, setShowShortUrl] = useState(false);
   const [shortURL, setShortURL] = useState("");
-  console.log(shortURL);
 
   const getDataFromBackend = async () => {
     try {
       const response = await axios.post(`http://localhost:8080/shorten`, {
         url,
       });
-      console.log(response.data);
-      if (response?.data?.shortURL) setShowShortUrl(true);
-      setShortURL(response?.data?.shortURL);
+      if (response?.data?.shortURL) {
+        setShortURL(response.data.shortURL);
+        setShowShortUrl(true);
+      }
     } catch (error) {
-      setShortURL(false);
+      setShowShortUrl(false);
       console.log(error);
+      alert("Failed to shorten the URL. Please try again.");
     }
   };
 
   const handleShortURL = () => {
+    if (!url.trim()) {
+      alert("Please enter a URL");
+      return;
+    }
     getDataFromBackend();
   };
+
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(shortURL);
     alert("Short URL copied to clipboard!");
@@ -44,6 +50,7 @@ const UrlShortener = () => {
           <input
             type="text"
             placeholder="Enter link here"
+            value={url}
             onChange={(e) => setUrl(e.target.value)}
             className="w-full p-2 text-gray-900 rounded-lg border border-gray-600"
           />
@@ -86,26 +93,6 @@ const UrlShortener = () => {
           .
         </p>
       </div>
-
-      {/* <div className="bg-blue-600 text-white rounded-lg shadow-md p-6 mt-8 w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-4">
-          Take your business to the next level!
-        </h2>
-        <p className="mb-4">
-          Want to brand your short links, create QR codes, and get detailed
-          analytics? Get Rebrandly for your business and super-charge your link
-          management.
-        </p>
-        <button className="bg-white text-blue-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100">
-          Try Rebrandly
-        </button>
-        <p className="mt-4">
-          or{" "}
-          <a href="#" className="underline">
-            Talk to sales
-          </a>
-        </p>
-      </div> */}
     </div>
   );
 };
