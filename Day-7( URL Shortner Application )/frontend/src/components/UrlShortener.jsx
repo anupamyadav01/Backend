@@ -1,12 +1,28 @@
+import axios from "axios";
 import { useState } from "react";
 
 const UrlShortener = () => {
   const [url, setUrl] = useState("");
   const [showShortUrl, setShowShortUrl] = useState(false);
   const [shortURL, setShortURL] = useState("");
+  console.log(shortURL);
+
+  const getDataFromBackend = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8080/shorten`, {
+        url,
+      });
+      console.log(response.data);
+      if (response?.data?.shortURL) setShowShortUrl(true);
+      setShortURL(response?.data?.shortURL);
+    } catch (error) {
+      setShortURL(false);
+      console.log(error);
+    }
+  };
 
   const handleShortURL = () => {
-    console.log();
+    getDataFromBackend();
   };
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(shortURL);
@@ -39,11 +55,11 @@ const UrlShortener = () => {
           </button>
         </span>
         {showShortUrl && (
-          <div className="mt-4 max-w-[60%] flex gap-2">
+          <div className="mt-4 max-w-[80%] flex gap-2">
             <input
               type="text"
               readOnly
-              value={"text"}
+              value={shortURL}
               className="outline-none w-full p-2 text-gray-900 rounded-lg border border-gray-600"
             />
             <button

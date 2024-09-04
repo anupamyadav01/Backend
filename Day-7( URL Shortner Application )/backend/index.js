@@ -1,9 +1,12 @@
 import express from "express";
 import { nanoid } from "nanoid";
 import fs from "fs";
+import cors from "cors";
 const app = express();
 const portNo = 8080;
+
 app.use(express.json());
+app.use(cors({}));
 
 const isURLValid = (url) => {
   try {
@@ -39,7 +42,7 @@ app.post("/shorten", (req, res) => {
 
   res.send({
     sucess: true,
-    data: `https://localhost:${portNo}/${shortURL}`,
+    shortURL: `https://localhost:${portNo}/${shortURL}`,
   });
 });
 
