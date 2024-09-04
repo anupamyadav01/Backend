@@ -31,7 +31,7 @@ const getShortURL = async (req, res) => {
 
     res.send({
       success: true,
-      shortURL: `https://localhost:${portNo}/${shortURL}`,
+      shortURL: `http://localhost:${portNo}/${shortURL}`,
     });
   } catch (error) {
     console.error("Error saving URL:", error);
@@ -44,18 +44,16 @@ const getShortURL = async (req, res) => {
 
 const redirectOriginalURL = async (req, res) => {
   const shortURL = req.params.shortURL;
+  console.log(shortURL);
 
   try {
-    const urlData = await urlModel.findOne({ shortURL });
-
-    if (!urlData) {
-      return res.status(404).json({
-        success: false,
-        message: "Not found",
-      });
-    }
-
-    res.redirect(urlData.originalURL);
+    const response = await urlModel.findOne({ shortURL: [shortURL] });
+    console.log(response?.originalURL);
+    // res.send({
+    //   status: true,
+    //   result: response,
+    // });
+    res.redirect(response?.originalURL);
   } catch (error) {
     console.error("Error finding URL:", error);
     res.status(500).json({

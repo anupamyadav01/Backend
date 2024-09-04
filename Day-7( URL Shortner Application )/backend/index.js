@@ -24,7 +24,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
-app.use("", router);
+app.use("/", router);
 app.listen(portNo, () => {
   console.log(`Server is running at http://localhost:${portNo}`);
 });
