@@ -5,7 +5,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   try {
     const imageUrl = "https://picsum.photos/200/300";
 
