@@ -1,4 +1,6 @@
 export const globalRequestLogger = (req, res, next) => {
+  console.log("Global Request Logger called");
+
   const method = req.method;
   const url = req.url;
   const ip = req.ip;
